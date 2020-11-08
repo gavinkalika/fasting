@@ -1,1 +1,1 @@
-from src.app.indexController import app
+from src.http.IndexController import app

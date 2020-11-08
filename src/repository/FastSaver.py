@@ -17,7 +17,7 @@ class FastSaver:
             database="fasting"
         )
 
-    def save(self):
+    def start_fast(self):
         start_fast_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
         db_cursor = self.db_conn.cursor()
@@ -26,6 +26,9 @@ class FastSaver:
         db_cursor.execute(sql)
 
         self.db_conn.commit()
+
+    def end_fast(self):
+        pass
 
     def __repr__(self):
         return 'Fast Saver'

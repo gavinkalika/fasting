@@ -14,6 +14,7 @@ def start_fast():
     saver = FastSaver()
     saver.start_fast()
 
+
 @app.route('/end-fast')
 def end_fast():
     saver = FastSaver()

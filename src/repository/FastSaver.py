@@ -28,7 +28,16 @@ class FastSaver:
         self.db_conn.commit()
 
     def end_fast(self):
-        pass
+        end_fast_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+
+        db_cursor = self.db_conn.cursor()
+
+        sql = "UPDATE fast " \
+              "SET end_time = '{0}'" \
+              "WHERE created_time IS NULL".format(end_fast_time)
+        db_cursor.execute(sql)
+
+        self.db_conn.commit()
 
     def __repr__(self):
         return 'Fast Saver'

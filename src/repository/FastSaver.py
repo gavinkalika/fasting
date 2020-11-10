@@ -34,7 +34,7 @@ class FastSaver:
 
         sql = "UPDATE fast " \
               "SET end_time = '{0}'" \
-              "WHERE created_time IS NULL".format(end_fast_time)
+              "WHERE end_time IS NULL".format(end_fast_time)
         db_cursor.execute(sql)
 
         self.db_conn.commit()

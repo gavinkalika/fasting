@@ -7,6 +7,8 @@ import yaml
 class FastLoader:
 
     def __init__(self):
+        """Constructor to get list of fasts."""
+
         with open('../config/db.yaml') as file:
             db_config = yaml.load(file, Loader=yaml.FullLoader)
 
@@ -18,6 +20,12 @@ class FastLoader:
         )
 
     def load_all(self):
+        """Use this method to load all fasts
+
+        Returns:
+        array: List of fasts
+        """
+
         db_cursor = self.db_conn.cursor()
 
         sql = "SELECT created_time, end_time FROM fast"

@@ -7,6 +7,8 @@ import yaml
 class FastSaver:
 
     def __init__(self):
+        """Constructor to get list of fasts."""
+
         with open('../config/db.yaml') as file:
             db_config = yaml.load(file, Loader=yaml.FullLoader)
 
@@ -18,6 +20,8 @@ class FastSaver:
         )
 
     def start_fast(self):
+        """Use this method to start a fast timer"""
+
         start_fast_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
         db_cursor = self.db_conn.cursor()
@@ -28,6 +32,8 @@ class FastSaver:
         self.db_conn.commit()
 
     def end_fast(self):
+        """Use this method to load all fasts"""
+
         end_fast_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
         db_cursor = self.db_conn.cursor()

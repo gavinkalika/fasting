@@ -20,7 +20,7 @@ class FastSaver:
         self.db_conn.commit()
 
     def end_fast(self):
-        """Use this method to load all fasts"""
+        """Use this method to end fasts"""
 
         end_fast_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 

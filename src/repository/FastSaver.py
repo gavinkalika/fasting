@@ -1,23 +1,11 @@
 from datetime import datetime, timezone
-import mysql.connector
-
-import yaml
 
 
 class FastSaver:
 
-    def __init__(self):
+    def __init__(self, db_conn):
         """Constructor to get list of fasts."""
-
-        with open('../config/db.yaml') as file:
-            db_config = yaml.load(file, Loader=yaml.FullLoader)
-
-        self.db_conn = mysql.connector.connect(
-            host=db_config['host'],
-            user=db_config['user'],
-            password=db_config['password'],
-            database="fasting"
-        )
+        self.db_conn = db_conn
 
     def start_fast(self):
         """Use this method to start a fast timer"""

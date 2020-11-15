@@ -1,5 +1,5 @@
 import flask
-from flask import Flask
+from flask import Flask, render_template
 from src.repository.FastSaver import FastSaver
 from src.repository.FastLoader import FastLoader
 from pprint import pprint
@@ -8,7 +8,7 @@ import mysql.connector
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask('fast', instance_relative_config=True)
+    app = Flask('fast', instance_relative_config=True, root_path="../src/")
 
     app.config.from_json('config.json', silent=False)
 
@@ -40,6 +40,7 @@ def create_app(test_config=None):
     @app.route('/history/all', methods=['GET'])
     def history():
         loader = FastLoader(get_db_conn())
-        return loader.load_all()
+        # pprint(app.jinja_env)
+        return render_template('index.html', fasts=tuple(loader.load_all()))
 
     return app

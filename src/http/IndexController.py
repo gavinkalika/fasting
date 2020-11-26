@@ -23,7 +23,7 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET'])
     def run():
-        return 'Hello World'
+        return render_template('index_ui.html')
 
     @app.route('/start-fast', methods=['POST'])
     def start_fast():

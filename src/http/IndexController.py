@@ -3,18 +3,18 @@ from flask import Flask, render_template
 from src.repository.FastSaver import FastSaver
 from src.repository.FastLoader import FastLoader
 from pprint import pprint
-import mysql.connector
+from mysql.connector import connect
 
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask('fast', instance_relative_config=True, root_path="../src/")
+    app = Flask('fast', instance_relative_config=True, root_path="src/")
 
     app.config.from_json('config.json', silent=False)
 
     def get_db_conn():
         # extract into separate class
-        return mysql.connector.connect(
+        return connect(
             host=app.config.get('DB_HOST'),
             user=app.config.get('DB_USER'),
             password=app.config.get('DB_PASSWORD'),

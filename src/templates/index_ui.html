@@ -54,6 +54,13 @@
       -ms-transform: scale(1.2);
       transform: scale(1.2);
     }
+
+
+    @media only screen and (min-width: 1000px) {
+      .iphone-imgs {
+        /* width: 13% !important; */
+      }
+    }
   </style>
 </head>
 
@@ -103,7 +110,7 @@
 
       <div style="border: 1px solid green;position: absolute;top: 25%;left: 5%;max-width: 50%;">
         <h4 style="
-    font-size: 64px;
+    font-size: 275%;
     line-height: 110%;
     font-weight: 500;
     text-align: center;
@@ -112,7 +119,7 @@
 
         <p style="
     color: #fdfbf8;
-    font-size: 24px;
+    font-size: 150%;
     line-height: 150%;
     text-align: center;
 ">
@@ -124,9 +131,9 @@
 
     </section>
 
-    <section class="section-info" style="border:1px solid black;width:100%;height:650px;position: relative;background: #d6cfcf63; padding-top: 50px;">
+<section class="section-info" style="border:1px solid black;width:100%;height:650px;position: relative;background: #d6cfcf63; padding-top: 50px;">
 
-<h3 style="text-align: center;">Why Fast?</h3>
+      <h3 style="text-align: center;">Why Fast?</h3>
 
       <div style="
     display: inline-block;
@@ -134,26 +141,36 @@
     height: 500px;
 ">
         <ion-icon name="arrow-back-circle-outline" role="img" class="md hydrated" aria-label="arrow back circle outline" style="
-    width: 20%;
+    width: 13%;
     height: 100%;
+    max-width: 15%;
     float: right;
 "></ion-icon>
 
       </div>
+
       <div class="img-wrapper" style="
-    position: relative;
-    /* float: left; */
-    display: inline-block;
-    width: 40%;
-    max-width: 40%;
-">
+      position: relative;
+      /* float: left; */
+      display: inline-block;
+      width: 40%;
+      max-width: 40%;
+  ">
+        <div style="position:relative">
+
+          <ion-icon name="phone-portrait-outline" alt="iphone" style="width: 100%;left: 0;right: 0;margin-right: auto;margin-left: auto;/* vertical-align: middle; */top: 25px;bottom: 0;height:500px;color:#FED766;line-height: 0;max-width: 100%;z-index: 1;" size="large" role="img" class="md icon-large hydrated" aria-label="phone portrait outline"></ion-icon>
 
 
-        <ion-icon name="phone-portrait-outline" alt="iphone" style="width: 100%;left: 0;right: 0;margin-right: auto;margin-left: auto;/* vertical-align: middle; */top: 25px;bottom: 0;height:500px;color:#FED766;line-height: 0;max-width: 100%;" size="large" role="img" class="md icon-large hydrated" aria-label="phone portrait outline"></ion-icon>
 
+          <div style="position: absolute;border: 14px solid pink;top: 0;height: 100%;width: 100%;z-index: -1;">
+            
+            <div style="top: 0;width: 30%;left: 0%;margin-left: auto;margin-right: auto;height: 100%;border: 5px solid green;">
+              <img src="../static/fasting-iphone.png" style="width: 100%;display: block;margin-left: auto;margin-right: auto;height: 100%;/* z-index: -1; */" class="iphone-imgs" width="278">
+            </div>
+            
+          </div>
+        </div>
       </div>
-
-
       <div style="
     /* float: left; */
     display: inline-block;
@@ -161,9 +178,10 @@
     height: 500px;
 ">
         <ion-icon name="arrow-forward-circle-outline" role="img" class="md hydrated" aria-label="arrow forward circle outline" style="
-    height: 100%;
-    width: 20%;
-"></ion-icon>
+        width: 13%;
+        height: 100%;
+        max-width: 15%;
+    "></ion-icon>
       </div>
     </section>
 

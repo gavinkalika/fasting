@@ -38,7 +38,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      /* border: solid 1px red; */
+      border: solid 1px red;
       font-family: Lano, Arial;
       font-size: 20px;
     }
@@ -92,7 +92,7 @@
         padding-right: 5px;
     ">
           <li class="nav-item">
-            <a class="nav-link" href="#" style="font-weight: 500;">Why Fast?</a>
+            <a class="nav-link" href="#whyFast" style="font-weight: 500;">Why Fast?</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="font-weight: 500;">Register</a>
@@ -106,7 +106,6 @@
 
     <style>
       .section-banner {
-        /* background-image: url("../static/sand-timer.png"); */
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/sand-timer.png') no-repeat center center fixed;
         background-size: cover;
         background-repeat: no-repeat;
@@ -139,66 +138,97 @@
 
     </section>
 
-    <section class="section-info"
-      style="border:0px solid black;width:100%;height: 816px;position: relative;background: #222831;padding-top: 100px;">
+    <style>
+      .section-info {
+        border: 0px solid black;
+        width: 100%;
+        height: 816px;
+        position: relative;
+        background: #222831;
+        padding-top: 100px;
+      }
 
-      <h3 style="text-align: center;font-size: 232%;font-weight: 500;color: #ffd369;padding-bottom: 50px;">Why Fast?
-      </h3>
+      .section-info h3 {
+        text-align: center;
+        font-size: 232%;
+        font-weight: 500;
+        color: #ffd369;
+        padding-bottom: 50px;
+      }
 
-      <div style="
-    display: inline-block;
-    width: 30%;
-    height: 500px;
-">
-        <ion-icon name="arrow-back-circle-outline" role="img" class="md hydrated" aria-label="arrow back circle outline"
-          style="
-    width: 13%;
-    height: 100%;
-    max-width: 15%;
-    float: right;
-"></ion-icon>
+      .section-info-inner-wrapper {
+        display: inline-block;
+        width: 40%;
+        height: 500px;
+      }
 
-      </div>
-
-      <div class="img-wrapper" style="
-      position: relative;
-      /* float: left; */
-      display: inline-block;
-      width: 40%;
-      max-width: 40%;
-  ">
-        <div style="position:relative">
-
-          <ion-icon name="phone-portrait-outline" alt="iphone"
-            style="width: 100%;left: 0;right: 0;margin-right: auto;margin-left: auto;/* vertical-align: middle; */top: 25px;bottom: 0;height:500px;color:#FED766;line-height: 0;max-width: 100%;z-index: 1;"
-            size="large" role="img" class="md icon-large hydrated" aria-label="phone portrait outline"></ion-icon>
-
-
-
-          <div style="position: absolute;border: 0px solid pink;top: 0;height: 100%;width: 100%;z-index: -1;">
-
-            <div
-              style="top: 0;width: 30%;left: 0%;margin-left: auto;margin-right: auto;height: 100%;border: 5px solid green;">
-              <img src="../static/fasting-iphone.png"
-                style="width: 100%;display: block;margin-left: auto;margin-right: auto;height: 100%;/* z-index: -1; */"
-                class="iphone-imgs" width="278">
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div style="
-    /* float: left; */
-    display: inline-block;
-    width: 28%;
-    height: 500px;
-">
-        <ion-icon name="arrow-forward-circle-outline" role="img" class="md hydrated"
-          aria-label="arrow forward circle outline" style="
+      .left-arrow {
         width: 13%;
         height: 100%;
         max-width: 15%;
-    "></ion-icon>
+        float: right;
+        color: #ffd369;
+      }
+
+
+      .right-arrow {
+        width: 13%;
+        height: 100%;
+        max-width: 15%;
+        color: #ffd369;
+      }
+
+      .img-wrapper {
+        position: relative;
+        width: 25%;
+        float: left;
+        height: 500px;
+      }
+
+      #phone {
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin-right: auto;
+        margin-left: auto;
+        top: 25px;
+        bottom: 0;
+        height: 500px;
+        color: #FED766;
+        line-height: 0;
+        max-width: 100%;
+        z-index: 1;
+      }
+    </style>
+
+    <section class="section-info">
+      <a name="whyFast"></a>
+      <h3>Why Fast?
+      </h3>
+
+      <div class="section-info-inner-wrapper" style="
+      float: left;
+  ">
+        <ion-icon class="left-arrow md hydrated" name="arrow-back-circle-outline" role="img"
+          aria-label="arrow back circle outline"></ion-icon>
+
+      </div>
+
+      <div class="img-wrapper">
+        <img src="../static/smart-phone.png" style="width: 100%;" class="iphone-imgs" width="278">
+
+      </div>
+      <div style="
+      float: left;
+      width: 35%;
+      height: 500px;
+  ">
+        <ion-icon name="arrow-forward-circle-outline" role="img" class="md hydrated right-arrow"
+          aria-label="arrow forward circle outline" style="
+          width: 13%;
+          height: 100%;
+          max-width: 15%;
+      "></ion-icon>
       </div>
     </section>
 
@@ -243,15 +273,25 @@
       .form-input-row input:focus {
         outline: none;
       }
+
+      .section-contact form {
+        width: 100%;
+      }
+
+      .btn-wrapper {
+        width: 10%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
     <section class="section-contact">
+
       <h3 style="text-align: center; font-weight: 500; color: #ffd369;">Contact Us</h3>
 
       <div class="form-wrapper">
 
-        <form style="
-    width: 100%;
-">
+        <form>
 
 
 
@@ -268,13 +308,7 @@
             <input type="text" placeholder="Phone Number">
           </div>
 
-          <div style="
-    width: 10%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-">
+          <div class="btn-wrapper" class="btn-wrapper">
 
             <button type="submit" class="btn btn-primary text-center"
               style="background-color: #eeeeee; color:gray">Submit</button>
@@ -306,7 +340,7 @@
       }
     </style>
 
-    <section class="footer">
+    <footer class="footer">
 
       <div>
 
@@ -314,7 +348,7 @@
 
       </div>
 
-    </section>
+    </footer>
 
   </div>
 

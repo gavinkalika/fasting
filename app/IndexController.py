@@ -23,9 +23,48 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET'])
     def run():
-        # app.template
-        # dump(app)
-        return render_template('index_ui.html')
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return render_template('index.html')
+
+    @app.route('/register', methods=['GET'])
+    def register():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return render_template('register.html')
+
+    @app.route('/history', methods=['GET'])
+    def history():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return render_template('history.html')
+
+    @app.route('/timer', methods=['GET'])
+    def timer():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return render_template('timer.html')
+
+    @app.route('/login', methods=['GET'])
+    def login():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return render_template('login.html')
 
     @app.route('/start-fast', methods=['POST'])
     def start_fast():
@@ -39,10 +78,10 @@ def create_app(test_config=None):
         saver.end_fast()
         return flask.Response(status=200)
 
-    @app.route('/history/all', methods=['GET'])
-    def history():
-        loader = FastLoader(get_db_conn())
-        # pprint(app.jinja_env)
-        return render_template('index.html', fasts=tuple(loader.load_all()))
+    # @app.route('/history/all', methods=['GET'])
+    # def history():
+    #     loader = FastLoader(get_db_conn())
+    #     # pprint(app.jinja_env)
+    #     return render_template('index.html', fasts=tuple(loader.load_all()))
 
     return app

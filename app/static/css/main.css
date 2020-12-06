@@ -68,7 +68,7 @@ body {
 
 /* SECTION - BANNER */
 .section-banner {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/sand-timer.png') no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/sand-timer.png') no-repeat center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100px;
@@ -208,7 +208,7 @@ body {
 /* SECTION - CONTACT */
 
 .section-contact {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../static/plate.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/plate.jpg') no-repeat center center;
     background-size: cover;
     padding-top: 100px;
     height: auto;

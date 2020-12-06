@@ -94,7 +94,7 @@ body {
 }
 
 .section-banner div {
-    border: 1px solid green;
+    border: 0px solid green;
     position: absolute;
     top: 25%;
     left: 5%;

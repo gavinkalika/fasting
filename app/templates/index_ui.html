@@ -27,7 +27,7 @@
       <!-- Brand/logo -->
 
       <a class="navbar-brand nav-logo" href="index_ui.html">
-        <img src="../static/logo-removebg-preview.png" alt="logo">
+        <img src="{{ url_for('static', filename='imgs/logo-removebg-preview.png') }}" alt="logo">
       </a>
 
       <!-- Links -->
@@ -71,10 +71,10 @@
       </div>
 
       <div class="img-wrapper">
-        <img src="../static/smart-phone.png" id="smart-phone" class="iphone-imgs" width="278">
+        <img src="{{ url_for('static', filename='imgs/smart-phone.png') }}" id="smart-phone" class="iphone-imgs" width="278" alt="phone-outline">
 
         <div id="smart-phone-wrapper">
-          <img src="../static/fasting-smartphone-screen.png" class="smart-phone-imgs" width="278">
+          <img src="{{ url_for('static', filename='imgs/fasting-smartphone-screen.png') }}" class="smart-phone-imgs" width="278" alt="phone-screen">
         </div>
 
       </div>

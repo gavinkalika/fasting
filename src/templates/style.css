@@ -282,6 +282,6 @@ body {
 .footer div {
     height: 50px;
     bottom: 0;
-    border: 1px solid pink;
+    border: 0px solid pink;
     width: 100%;
 }

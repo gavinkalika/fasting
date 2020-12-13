@@ -1,7 +1,9 @@
 import flask
-from flask import Flask, render_template
-# from src.repository.FastSaver import FastSaver
-# from src.repository.FastLoader import FastLoader
+from flask import Flask, render_template, request, redirect, session, flash
+from app.repository.UserSaver import UserSaver
+from app.repository.FastSaver import FastSaver
+from app.repository.UserLoader import UserLoader
+from app.repository.FastLoader import FastLoader
 from pprint import pprint
 from mysql.connector import connect
 
@@ -9,6 +11,7 @@ from mysql.connector import connect
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
+    app.secret_key = 'secret'
 
     app.config.from_json('../var/fast-instance/config.json', silent=False)
 
@@ -28,7 +31,13 @@ def create_app(test_config=None):
         Returns:
             [type]: [description]
         """
-        return render_template('index.html')
+
+        print(session.get("username"))
+
+        if session.get("username"):
+            return render_template('index_auth.html', username=session.get("username"))
+
+        return render_template('index.html', username=session.get("username"))
 
     @app.route('/register', methods=['GET'])
     def register():
@@ -38,6 +47,25 @@ def create_app(test_config=None):
             [type]: [description]
         """
         return render_template('register.html')
+
+    @app.route('/register-save', methods=['POST'])
+    def register_save():
+        """Saves data from register form.
+
+        Returns:
+            [type]: [description]
+        """
+
+        req = request.form
+        saver = UserSaver(get_db_conn())
+
+        # need to validate data
+
+        saver.save_user(email=req.get('email'), password=req.get('password'))
+
+        session["username"] = req.get('email')
+
+        return redirect('/')
 
     @app.route('/history', methods=['GET'])
     def history():
@@ -65,6 +93,39 @@ def create_app(test_config=None):
             [type]: [description]
         """
         return render_template('login.html')
+
+    @app.route('/login-post', methods=['POST'])
+    def login_post():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        loader = UserLoader(get_db_conn())
+
+        # need to validate data
+
+        req = request.form
+        response = redirect('/')
+        try:
+            user = loader.load_user_by_email(email=req.get('email'))
+            session["username"] = user[0]
+        except:
+            flash("User does not exist.")
+            response = redirect('/login')
+
+        return response
+
+    @app.route('/logout', methods=['GET'])
+    def logout():
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        session["username"] = None
+
+        return redirect('/')
 
     @app.route('/start-fast', methods=['POST'])
     def start_fast():

@@ -4,25 +4,35 @@
 {% block content %}
 <section class="section-info">
 
-  <h3>{% block sub_title %}Register {% endblock %}</h3>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 
-  <div class="form-wrapper">
+    <h3>{% block sub_title %}Register {% endblock %}</h3>
 
-    <form {% block form_action %}action="{{ url_for('register_save') }}"{% endblock %} method="post">
+    <div class="form-wrapper">
 
-      <div class="form-input-row">
-        <input type="text" placeholder="Email" name="email">
-      </div>
+        <form {% block form_action %}action="{{ url_for('register_save') }}" {% endblock %} method="post">
 
-      <div class="form-input-row">
-        <input type="text" placeholder="Password" name="password">
-      </div>
+            <div class="form-input-row">
+                <input type="text" placeholder="Email" name="email">
+            </div>
 
-      <div class="btn-wrapper" class="btn-wrapper">
+            <div class="form-input-row">
+                <input type="text" placeholder="Password" name="password">
+            </div>
 
-        <button type="submit" class="btn btn-primary text-center">Submit</button>
-      </div>
-    </form>
-  </div>
+            <div class="btn-wrapper" class="btn-wrapper">
+
+                <button type="submit" class="btn btn-primary text-center">Submit</button>
+            </div>
+        </form>
+    </div>
 </section>
 {% endblock %}

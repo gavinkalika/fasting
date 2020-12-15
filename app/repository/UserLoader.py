@@ -19,6 +19,9 @@ class UserLoader:
         if result is None:
             raise Exception("User does not exist.")
 
+        if db_cursor.fetchall().count > 1:
+            raise Exception("Too many users with this e-mail address.")
+
         return result
 
     def __repr__(self):

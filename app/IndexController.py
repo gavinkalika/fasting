@@ -1,4 +1,5 @@
 import flask
+from cerberus import Validator
 from flask import Flask, render_template, request, redirect, session, flash
 from app.repository.UserSaver import UserSaver
 from app.repository.FastSaver import FastSaver
@@ -6,6 +7,7 @@ from app.repository.UserLoader import UserLoader
 from app.repository.FastLoader import FastLoader
 from pprint import pprint
 from mysql.connector import connect
+from validator import validate
 
 
 def create_app(test_config=None):
@@ -14,6 +16,9 @@ def create_app(test_config=None):
     app.secret_key = 'secret'
 
     app.config.from_json('../var/fast-instance/config.json', silent=False)
+
+    schema = {}
+    v = Validator(schema)
 
     def get_db_conn():
         # extract into separate class
@@ -60,6 +65,23 @@ def create_app(test_config=None):
         saver = UserSaver(get_db_conn())
 
         # need to validate data
+        data_to_validate = {
+            "email": req.get('email'),
+            "password": req.get('password')
+        }
+
+        rules = {"email": "mail",
+                 "password": "string|min:5"
+                 }
+
+        result, _, errors = validate(req=data_to_validate, rules=rules, return_info=True)
+        if not result:
+            for key in errors:
+                field_name = key
+                for k in errors[key]:
+                    flash("{0} field {1}".format(field_name, errors[key][k].lower()))
+
+            return redirect('/register')
 
         saver.save_user(email=req.get('email'), password=req.get('password'))
 
@@ -107,6 +129,26 @@ def create_app(test_config=None):
 
         req = request.form
         response = redirect('/')
+
+        # need to validate data
+        data_to_validate = {
+            "email": req.get('email'),
+            "password": req.get('password')
+        }
+
+        rules = {"email": "mail",
+                 "password": "string|min:5"
+                 }
+
+        result, _, errors = validate(req=data_to_validate, rules=rules, return_info=True)
+        if not result:
+            for key in errors:
+                field_name = key
+                for k in errors[key]:
+                    flash("{0} field {1}".format(field_name, errors[key][k].lower()))
+
+            return redirect('/login')
+
         try:
             user = loader.load_user_by_email(email=req.get('email'))
             session["username"] = user[0]

@@ -24,6 +24,13 @@ body {
     padding: 0;
 }
 
+/* FLASK ERROR MESSAGES */
+.flashes{
+    color: red;
+    text-align: center;
+}
+
+
 /* TOP LEFT HAND NAVIGATION */
 
 .navbar {

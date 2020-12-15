@@ -8,14 +8,14 @@
 
   <div class="form-wrapper">
 
-    <form {% block form_action %}action="test"{% endblock %}>
+    <form {% block form_action %}action="{{ url_for('register_save') }}"{% endblock %} method="post">
 
       <div class="form-input-row">
-        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Email" name="email">
       </div>
 
       <div class="form-input-row">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Password" name="password">
       </div>
 
       <div class="btn-wrapper" class="btn-wrapper">

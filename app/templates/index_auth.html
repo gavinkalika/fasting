@@ -1,0 +1,71 @@
+{% extends 'base_auth.html' %}
+
+
+{% block content %}
+<!-- Banner -->
+<section class="section-banner">
+
+  <div>
+    <h4>Fast forward to better health.</h4>
+
+    <p>
+      Fast track your goals when you track your fasts with guidance, insights, and accountability to unlock a
+      longer, healthier life.
+    </p>
+  </div>
+
+</section>
+
+<section class="section-info">
+  <a name="whyFast"></a>
+  <h3>Why Fast?
+  </h3>
+
+  <div class="section-info-inner-wrapper" id="left-arrow-wrapper">
+    <ion-icon class="left-arrow md hydrated" name="arrow-back-circle-outline" role="img"
+      aria-label="arrow back circle outline"></ion-icon>
+  </div>
+
+  <div class="img-wrapper">
+    <img src="{{ url_for('static', filename='imgs/smart-phone.png') }}" id="smart-phone" class="iphone-imgs" width="278" alt="phone-outline">
+
+    <div id="smart-phone-wrapper">
+      <img src="{{ url_for('static', filename='imgs/fasting-smartphone-screen.png') }}" class="smart-phone-imgs" width="278" alt="phone-screen">
+    </div>
+
+  </div>
+  <div id="right-arrow-wrapper">
+    <ion-icon name="arrow-forward-circle-outline" role="img" class="md hydrated right-arrow"
+      aria-label="arrow forward circle outline"></ion-icon>
+  </div>
+</section>
+
+<section class="section-contact">
+
+  <h3>Contact Us</h3>
+
+  <div class="form-wrapper">
+
+    <form>
+
+      <div class="form-input-row">
+        <input type="text" placeholder="Name">
+      </div>
+
+      <div class="form-input-row">
+        <input type="text" placeholder="Email">
+      </div>
+
+      <div class="form-input-row">
+
+        <input type="text" placeholder="Phone Number">
+      </div>
+
+      <div class="btn-wrapper" class="btn-wrapper">
+
+        <button type="submit" class="btn btn-primary text-center">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

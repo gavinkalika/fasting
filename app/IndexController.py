@@ -1,6 +1,8 @@
 import flask
 from cerberus import Validator
 from flask import Flask, render_template, request, redirect, session, flash
+
+from app.exception.ExceedLimitException import ExceedLimitException
 from app.repository.UserSaver import UserSaver
 from app.repository.FastSaver import FastSaver
 from app.repository.UserLoader import UserLoader
@@ -29,6 +31,15 @@ def create_app(test_config=None):
             database=app.config.get('DB_NAME')
         )
 
+    def auth_check() -> str:
+        val = session.get("username")
+
+        if val is None:
+            flash("Unauthorized")
+            return redirect('/')
+
+        return val
+
     @app.route('/', methods=['GET'])
     def run():
         """[summary]
@@ -36,9 +47,6 @@ def create_app(test_config=None):
         Returns:
             [type]: [description]
         """
-
-        print(session.get("username"))
-
         if session.get("username"):
             return render_template('index_auth.html', username=session.get("username"))
 
@@ -96,7 +104,9 @@ def create_app(test_config=None):
         Returns:
             [type]: [description]
         """
-        return render_template('history.html')
+        username = auth_check()
+
+        return render_template('history.html', username=username)
 
     @app.route('/timer', methods=['GET'])
     def timer():
@@ -105,7 +115,8 @@ def create_app(test_config=None):
         Returns:
             [type]: [description]
         """
-        return render_template('timer.html')
+        username = auth_check()
+        return render_template('timer.html', username=username)
 
     @app.route('/login', methods=['GET'])
     def login():
@@ -124,8 +135,6 @@ def create_app(test_config=None):
             [type]: [description]
         """
         loader = UserLoader(get_db_conn())
-
-        # need to validate data
 
         req = request.form
         response = redirect('/')
@@ -152,9 +161,10 @@ def create_app(test_config=None):
         try:
             user = loader.load_user_by_email(email=req.get('email'))
             session["username"] = user[0]
-        except:
+        except Exception as e:
+            print(e)
             flash("User does not exist.")
-            response = redirect('/login')
+            response = redirect('/')
 
         return response
 
@@ -171,15 +181,40 @@ def create_app(test_config=None):
 
     @app.route('/start-fast', methods=['POST'])
     def start_fast():
-        saver = FastSaver(get_db_conn())
-        saver.start_fast()
-        return flask.Response(status=200)
+        username = auth_check()
+        user_loader = UserLoader(get_db_conn())
+        fast_loader = FastLoader(get_db_conn(), user_loader)
+
+        saver = FastSaver(get_db_conn(), user_loader, fast_loader)
+
+        try:
+            saver.start_fast(email=username)
+        except ExceedLimitException:
+            flash('This user, {0}, already has an active fast open.'.format(username))
+            return redirect('/timer')
+        except Exception:
+            flash("User does not exist.")
+            return redirect('/timer')
+
+        flash("Fast started.")
+        return redirect('/timer')
 
     @app.route('/end-fast', methods=['POST'])
     def end_fast():
-        saver = FastSaver(get_db_conn())
-        saver.end_fast()
-        return flask.Response(status=200)
+        username = auth_check()
+        user_loader = UserLoader(get_db_conn())
+        fast_loader = FastLoader(get_db_conn(), user_loader)
+
+        saver = FastSaver(get_db_conn(), user_loader, fast_loader)
+
+        try:
+            saver.end_fast(email=username)
+        except:
+            flash("User does not exist.")
+            return redirect('/timer')
+
+        flash("Fast Stopped.")
+        return redirect('/timer')
 
     # @app.route('/history/all', methods=['GET'])
     # def history():

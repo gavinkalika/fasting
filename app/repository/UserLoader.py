@@ -19,10 +19,27 @@ class UserLoader:
         if result is None:
             raise Exception("User does not exist.")
 
-        if db_cursor.fetchall().count > 1:
+        if len(result) > 1:
             raise Exception("Too many users with this e-mail address.")
 
         return result
+
+    def load_user_id_by_email(self, email: str) -> tuple:
+        db_cursor = self.db_conn.cursor()
+
+        sql = "SELECT id from user WHERE email = '{0}'".format(email)
+
+        db_cursor.execute(sql)
+
+        result = db_cursor.fetchone()
+
+        if result is None:
+            raise Exception("User does not exist.")
+
+        if len(result) > 1:
+            raise Exception("Too many users with this e-mail address.")
+
+        return result[0]
 
     def __repr__(self):
         return 'User Saver'

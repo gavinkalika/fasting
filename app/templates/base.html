@@ -23,14 +23,14 @@
 <body>
   <div class="container-fluid no-padding">
 
-    
+
     <nav class="navbar navbar-expand-sm">
       <!-- Brand/logo -->
-    
+
       <a class="navbar-brand nav-logo" href="index_ui.html">
         <img src="{{ url_for('static', filename='imgs/logo-removebg-preview.png') }}" alt="logo">
       </a>
-    
+
       <!-- Links -->
       {% block top_nav %}
       <div class="nav nav-link-pull-right">
@@ -48,7 +48,7 @@
       </div>
       {% endblock %}
     </nav>
-    
+
 
     {% block content %}{% endblock %}
 

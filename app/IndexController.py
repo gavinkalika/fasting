@@ -216,6 +216,12 @@ def create_app(test_config=None):
         flash("Fast Stopped.")
         return redirect('/timer')
 
+    @app.route('/end-fast', methods=['GET'])
+    def view_settings():
+        username = auth_check()
+
+        return render_template('login.html')
+
     # @app.route('/history/all', methods=['GET'])
     # def history():
     #     loader = FastLoader(get_db_conn())
